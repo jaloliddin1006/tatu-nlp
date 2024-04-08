@@ -71,7 +71,7 @@ def ner(text):
             new_text = new_text.replace(
                     key, 
                     f"""<span style="color: blue; cursor: pointer;" 
-                              title="{value}" cursor=hand' class='choosen_word' >{key}</span>"""
+                              title="{value}" class='choosen_word' >{key}</span>"""
                     )        
     return new_text
 
