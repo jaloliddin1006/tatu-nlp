@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NER Technology (4-amaliy){% endblock %}
+
+{% block content %}
+
+
+<div class='container card mt-5 mb-5 p-5'>
+    <h1 class='pb-2'>NER Technology</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Sentence</label>
+            {% if new_data %}
+            <textarea class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+            placeholder="Sentence ... ">{{ old }} </textarea>
+  {% else %}
+  <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+  placeholder="Sentence ... "></textarea>
+  {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit for Checking</button>
+    </form>
+    <br>
+    
+    {% if new_data %}         
+    Yangi matn:      
+    <hr> 
+        <div class="hoverable">
+        {{ new_data|safe }}
+    </div>
+{% endif %}
+  
+</div>
+
+
+{% endblock content %}

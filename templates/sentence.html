@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sentence (2-amaliy){% endblock %}
+
+{% block content %}
+
+
+
+<div class='container card mt-5 mb-5 p-5'>
+  <h1 class='pb-2'>Check Sentence</h1>
+  <form action="{% url 'sentence' %}" method="post">
+      {% csrf_token %}
+      <textarea name='short_name' id='short_name' class='form-control' placeholder='Enter Short Name'></textarea>
+
+      <p class="alert alert-success">To'g'ri matn: {{ new_word }}</p>
+   
+      <input type="submit" value="Check" class="btn btn-primary">
+  </form>
+</div>
+{% comment %} 
+ <div class='container card'>
+    <h1>Add Short Names</h1>
+    <form action="{% url 'add_name' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="short_name" id="short_name" placeholder="Enter Short Name" >
+      
+        <input type="submit" value="Add Name" class="btn btn-primary">
+    </form>
+</div>  {% endcomment %}
+
+
+{% endblock content %}

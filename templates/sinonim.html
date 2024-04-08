@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sinonim (3-amaliy){% endblock %}
+
+{% block content %}
+
+
+<div class='container card mt-5 mb-5 p-5'>
+    <h1 class='pb-2'>Change sinonim words</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Sentence</label>
+            {% if change %}
+            <textarea class="form-control alert alert-primary" id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+            placeholder="Sentence ... ">{{ old }} </textarea>
+  {% else %}
+  <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+  placeholder="Sentence ... "></textarea>
+  {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    
+    {% if change %}
+            
+    <p class="alert alert-success">Yangi matn: 
+      {% for suz in change %}
+
+      {% if suz not in old %} <u class='btn-warning'> {{suz}} </u> {% else %} {{suz}} {% endif %}
+    
+    {% endfor %}</p>
+    
+    {% endif %}
+  
+</div>
+
+
+{% endblock content %}
