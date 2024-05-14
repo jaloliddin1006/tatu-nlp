@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}5-amaliy{% endblock %}
+
+{% block content %}
+
+
+<div class='container card mt-5 mb-5 p-5'>
+    <h1 class='pb-2'>Antonim</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Sentence</label>
+            {% if change %}
+            <textarea class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+            placeholder="Sentence ... ">{{ old }} </textarea>
+  {% else %}
+  <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+  placeholder="Sentence ... "></textarea>
+  {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit for Checking</button>
+    </form>
+    <br>
+    
+    {% if change %}         
+    Yangi matn:      
+    <hr> 
+        <div class="hoverable">
+        {{ change|safe }}
+    </div>
+{% endif %}
+  
+</div>
+
+
+{% endblock content %}

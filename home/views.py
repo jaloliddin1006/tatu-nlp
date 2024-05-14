@@ -3,6 +3,7 @@ from .short_names import words, shorts
 from .utilits import check_word
 from .sinonimlar import change_sinonim
 from .ner_technology import ner
+from .sinonim_antonim import change_antonim
 # Create your views here.
 
 
@@ -106,3 +107,17 @@ def ner_technology(request):
 
         return render(request, 'ner_technology.html', context)
     return render(request, 'ner_technology.html', context)
+
+
+def antonim(request):
+    context = {}
+    if request.method == 'POST':
+        sentence_ = request.POST.get('sentence')
+        change = change_antonim(sentence_)
+        context = {
+            'change': change,
+            'old':str(sentence_)
+        }
+        
+        return render(request, 'antonim.html', context)
+    return render(request, 'antonim.html', context)
