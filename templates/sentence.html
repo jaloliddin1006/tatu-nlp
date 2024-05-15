@@ -11,7 +11,7 @@
   <h1 class='pb-2'>Check Sentence</h1>
   <form action="{% url 'sentence' %}" method="post">
       {% csrf_token %}
-      <textarea name='short_name' id='short_name' class='form-control' placeholder='Enter Short Name'></textarea>
+      <textarea name='short_name' id='short_name' class='form-control' placeholder='Enter Short Name'>{% if old %}{{ old }}{% endif %}</textarea>
 
       <p class="alert alert-success">To'g'ri matn: {{ new_word }}</p>
    

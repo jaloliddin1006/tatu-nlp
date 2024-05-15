@@ -7,7 +7,7 @@
 
 <div class='container card mt-5 mb-5 p-5'>
     <h1 class='pb-2'>Check Short Names</h1>
-    <form action="{% url 'home' %}" method="post">
+    <form action="{% url 'short_name' %}" method="post">
         {% csrf_token %}
         <input class='m-3' type="text" name="short_name" id="short_name" placeholder="Enter Short Name" >
         {% comment %} <textarea name='short_name' id='short_name' class='form-control' placeholder='Enter Short Name'></textarea> {% endcomment %}

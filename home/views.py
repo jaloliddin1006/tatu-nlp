@@ -15,7 +15,7 @@ def check_words(matn):
     other = []
     for soz in matn.split():
         diffres = check_word([soz])
-        print(diffres, soz)
+        # print(diffres, soz)
         if soz.lower() in shorts.keys():
             new_matn.append(shorts[soz.lower()])
         else:
@@ -47,7 +47,7 @@ def short_name(request):
             'value': word,
             'check': check
         }
-    return render(request, 'sentence.html', context)
+    return render(request, 'index.html', context)
 
 
 
@@ -58,6 +58,7 @@ def sentence(request):
         matn = request.POST.get('short_name')
         new_word, other = check_words(matn)
         context = {
+            'old': matn,
             'new_word': new_word,
             'other': other
         }
