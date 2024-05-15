@@ -47,7 +47,7 @@ def short_name(request):
             'value': word,
             'check': check
         }
-    return render(request, 'index.html', context)
+    return render(request, 'sentence.html', context)
 
 
 
