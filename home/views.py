@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from home.morfoanizator import analyze_text
 from .short_names import words, shorts
 from .utilits import check_word
 from .sinonimlar import change_sinonim
@@ -122,3 +124,19 @@ def antonim(request):
         
         return render(request, 'antonim.html', context)
     return render(request, 'antonim.html', context)
+
+
+
+def morfoanalizator(request):
+    context = {}
+    if request.method == 'POST':
+        sentence_ = request.POST.get('sentence')
+        # print(sentence_)
+        change = analyze_text(sentence_)
+        context = {
+            'change': change,
+            'old':str(sentence_)
+        }
+        
+        return render(request, 'morfoanalizator.html', context)
+    return render(request, 'morfoanalizator.html', context)

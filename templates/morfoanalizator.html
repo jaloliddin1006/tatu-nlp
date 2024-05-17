@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Morfoanalizator (6-amaliy){% endblock %}
+
+{% block content %}
+
+
+<div class='container card mt-5 mb-5 p-5'>
+    <h1 class='pb-2'>Morfoanalizator</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Sentence</label>
+            {% if old %}
+            <textarea class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+            placeholder="Sentence ... ">{{ old }} </textarea>
+  {% else %}
+  <textarea class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='sentence' 
+  placeholder="Sentence ... "></textarea>
+  {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit for Checking</button>
+    </form>
+    <br>
+    
+    {% if change %}         
+    Yangi matn:      
+    <hr> 
+        <div class="hoverable">
+            {% for word in change %}
+            {% for w, p in word %}
+            {% if forloop.counter == 1 %}
+                <u><b>{{ w }} </b></u>({{ p }}),
+            {% else %}
+                <b>-{{ w }} </b>({{ p }}),
+                {% endif %}
+            {% endfor %}
+        <br>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="hoverable">
+        No data
+    </div>
+{% endif %}
+  
+</div>
+
+
+{% endblock content %}

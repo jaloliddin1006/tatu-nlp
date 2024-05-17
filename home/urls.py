@@ -9,4 +9,5 @@ urlpatterns = [
     path('sentence/', views.sentence, name='sentence'),
     path('add_name/', views.add_name, name='add_name'),
     path('antonim/', views.antonim, name='antonim'),
+    path('morfoanalyzer/', views.morfoanalizator, name='morfoanalizator'),
 ]
