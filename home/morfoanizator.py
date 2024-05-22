@@ -17,11 +17,11 @@ Undov so'zlar (Interj)(Interjections)
 """
 
 words = {
-    "N" : ["kitob", "daraxt", "uy", "o'quvchi", "o'qituvchi", "olma", "maktab", "qalam", "ruchka", "telefon", "kompyuter", "dastur", "qog'oz", "bog'"],
-    "Adj" : ["katta", "chiroyli", "tez", "qizil", "xursand", "yomon", "qiziq", "qo'rqinchli", "qo'rqoq", "qo'rqoqli"],
-    "V" : ["o'qimoq", "yozmoq", "yurmoq", "bilmoq", "qiyqir", "yubor", "kelmoq", "o'rgan", "yugur", "sakra", "uchmoq", "ich", 'ol'],
-    "Adv" : ["tez", "sekin", "yuqori", "past", ],
-    "Num" : ["bir", "ikki", "uch", "to'rt", "besh", "olti", "yetti", "sakkiz", "to'qqiz", "o'n", "yigirma", "o'n bir", "o'n ikki", "o'n uch", "o'n to'rt", "o'n besh", "o'n olti", "o'n yetti", "o'n sakkiz", "o'n to'qqiz", "yuz", "ming", "million", "milliard"],
+    "N" : ["kitob", "daraxt", "uy", "o'quvchi", "o'qituvchi", "olma", "maktab", "qalam", "ruchka", "telefon", "kompyuter", "dastur", "qog'oz", "bog'", "universitet", "ayiq", "odam", "inson", "koptok", "stul", "stol", "parta", "o'rik", "tog'"],
+    "Adj" : ["katta", "chiroyli", "tez", "qizil", "xursand", "yomon", "qiziq", "qo'rqinchli", "qo'rqoq", "qo'rqoqli", "sariq", "qora", "oq", "qizil", "yashil", ],
+    "V" : ["o'qi", "yoz", "yur", "bil", "qiyqir", "yubor", "kel", "o'rgan", "yugur", "sakra", "uch", "ich", 'ol', 'ish', ],
+    "Adv" : ["tez", "sekin", "yuqori", "past", 'kecha', 'bugun', 'ertaga'],
+    "Num" : ["bir", "ikki", "uch", "to'rt", "besh", "olti", "yetti", "sakkiz", "to'qqiz", "o'n", "yigirma", "o'ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to'qson", "yuz", "ming", "million", "milliard"],
     "Pron" : ["men", "sen", "u", "biz", "kim", "nima", "nima uchun", "qanday", "qaysi", "qancha", "qanchalik", "qaysi", "qanday", "qandaydir", "qandaydir"],
     "Conj" : ["va", "lekin", "yoki", "chunki"],
     # "Part1" : ["uchun", "bilan", "ga", "dan"], # ko'makchi so'zlar
@@ -60,6 +60,7 @@ suffixes = {
     "lari": "III shaxs ko'plik egalik aff",
     "imiz": "I shaxs ko'plik egalik aff",
     "ning": "qaratqich kelishigi aff",
+    "moq": "harakat nomi aff",
     "lar": "ko'plik aff",
     "ing": "II shaxs birlik egalik aff",
     "dan": "chiqish kelishigi aff",
@@ -94,6 +95,7 @@ suffixes = {
     "ar": "qaytarmagan nisbat aff",
     "di": "o'tgan zamon aff",
     "ib": "ravishdosh aff",
+    "uv": "harakat nomi aff",
     "k": "birlik egalik aff",
     "i": "III shaxs birlik egalik aff",
 }
@@ -141,8 +143,6 @@ def analyze_word(word):
             results.append((word, "Noma'lum so'z"))
             break
 
-
-
     return list(reversed(results))
 
 # Funksiya matndagi barcha so'zlarni tahlil qiladi
@@ -154,11 +154,14 @@ def analyze_text(text):
     # print(words)
     analysis = []
     for word in words:
+        if word.isdigit():
+            analysis.append([(word, "Num")])
+            continue
         analysis.append(analyze_word(word))
     return analysis
 
 # # Kiritilgan matn
-# text = " Biz Xursandchilikimizdan qiyqirib yubordik."
+# text = " Biz 20 Xursandchilikimizdan qiyqirib yubordik."
 
 # # Matnni tahlil qilish
 # analysis = analyze_text(text)
@@ -167,3 +170,6 @@ def analyze_text(text):
 #     for suffix, description in word_analysis:
 #         print(f"{suffix} ({description})", end=" ")
 #     print()
+
+
+#son larni tekshiradigan qo'shishim kerak (sonizator bilan birga)
